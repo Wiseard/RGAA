@@ -1,0 +1,1379 @@
+<!doctype html>
+
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parcours Remédiation RGAA</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0e1a;
+        --surface: #111827;
+        --surface2: #1a2235;
+        --border: rgba(99, 179, 237, 0.15);
+        --accent: #3b82f6;
+        --accent2: #06b6d4;
+        --accent3: #8b5cf6;
+        --gold: #f59e0b;
+        --green: #10b981;
+        --text: #e2e8f0;
+        --muted: #64748b;
+        --tanaguru: #3b82f6;
+        --dsi: #8b5cf6;
+        --metier: #10b981;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(–bg);
+        color: var(–text);
+        font-family:
+          ‘DM Sans’,
+          sans-serif;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* Grain overlay */
+      body::before {
+        content: ‘’;
+        position: fixed;
+        inset: 0;
+        /* background-image: url(
+          “data:image/svg + xml,
+          %3CsvgviewBox=‘00256256’xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilterid=‘noise’%3E%3CfeTurbulencetype=‘fractalNoise’baseFrequency=‘0.9’numOctaves=‘4’stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crectwidth=‘100%25’height=‘100%25’filter=‘url(
+              %23noise
+            )’opacity=‘0.04’/%3E%3C/svg%3E”
+        ); */
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.4;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 24px 80px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* HEADER */
+      header {
+        padding: 56px 0 48px;
+        text-align: center;
+        position: relative;
+      }
+
+      .header-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        border-radius: 100px;
+        padding: 6px 16px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(–accent2);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+
+      h1 {
+        font-family: ‘Syne’, sans-serif;
+        font-size: clamp(2rem, 5vw, 3.4rem);
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 16px;
+        background: linear-gradient(
+          135deg,
+          #e2e8f0 0%,
+          #02336a 50%,
+          #c4b5fd 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+        color: var(–muted);
+        max-width: 520px;
+        margin: 0 auto 36px;
+        line-height: 1.7;
+      }
+
+      /* LEGEND */
+      .legend {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 56px;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(–muted);
+      }
+
+      .legend-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      /* TABS */
+      .tabs {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        margin-bottom: 48px;
+        flex-wrap: wrap;
+      }
+
+      .tab-btn {
+        padding: 10px 22px;
+        border-radius: 100px;
+        border: 1px solid var(–border);
+        background: var(–surface);
+        color: var(–muted);
+        font-family:
+          ‘DM Sans’,
+          sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .tab-btn:hover {
+        border-color: rgba(0, 0, 0, 0.4);
+        color: var(–text);
+      }
+
+      .tab-btn.active {
+        background: var(–accent);
+        border-color: var(–accent);
+        color: #333;
+      }
+
+      /* VIEWS */
+      .view {
+        display: none;
+        animation: fadeIn 0.3s ease;
+      }
+      .view.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ===== TIMELINE ===== */
+      .timeline {
+        position: relative;
+        padding-left: 0;
+      }
+
+      .timeline::before {
+        content: ‘’;
+        position: absolute;
+        left: 28px;
+        top: 40px;
+        bottom: 40px;
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          var(–accent),
+          var(–accent3),
+          var(–green)
+        );
+        opacity: 0.3;
+      }
+
+      .step {
+        display: flex;
+        gap: 24px;
+        margin-bottom: 16px;
+        cursor: pointer;
+      }
+
+      .step-icon-col {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+
+      .step-num {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: ‘Syne’, sans-serif;
+        font-weight: 800;
+        font-size: 18px;
+        flex-shrink: 0;
+        transition: transform 0.2s;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        position: relative;
+        z-index: 1;
+      }
+
+      .step:hover .step-num {
+        transform: scale(1.08);
+      }
+
+      .step-body {
+        flex: 1;
+        background: var(–surface);
+        border: 1px solid var(–border);
+        border-radius: 16px;
+        padding: 22px 24px;
+        transition: all 0.25s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .step-body::before {
+        content: ‘’;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        border-radius: 0 2px 2px 0;
+        transition: opacity 0.25s;
+        opacity: 0.6;
+      }
+
+      .step:hover .step-body {
+        border-color: rgba(99, 179, 237, 0.3);
+        background: var(–surface2);
+        transform: translateX(4px);
+      }
+
+      .step-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 6px;
+      }
+
+      .step-title {
+        font-family: ‘Syne’, sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      .step-subtitle {
+        font-size: 12px;
+        color: var(–muted);
+        font-style: italic;
+        margin-bottom: 14px;
+      }
+
+      .chevron {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        color: var(–muted);
+        transition: transform 0.3s;
+      }
+
+      .step.open .chevron {
+        transform: rotate(180deg);
+      }
+
+      .step-detail {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
+
+      .step.open .step-detail {
+        max-height: 800px;
+      }
+
+      .detail-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 10px;
+        padding-top: 14px;
+        border-top: 1px solid var(–border);
+        margin-top: 4px;
+      }
+
+      .detail-card {
+        background: rgba(0, 0, 0, 0.03);
+        border: 1px solid var(–border);
+        border-radius: 10px;
+        padding: 12px 14px;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .detail-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+
+      .detail-text strong {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 3px;
+        color: var(–text);
+      }
+
+      .detail-text span {
+        line-height: 1.5;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        color: #050505;
+      }
+
+      .actor-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 3px 8px;
+        border-radius: 6px;
+        margin-top: 4px;
+      }
+
+      /* COLOR SCHEMES PER STEP */
+      .s1 .step-num {
+        background: rgba(59, 130, 246, 0.15);
+        color: #1666c2;
+      }
+      .s1 .step-body::before {
+        background: #3b82f6;
+      }
+      .s2 .step-num {
+        background: rgba(139, 92, 246, 0.15);
+        color: #401fc2;
+      }
+      .s2 .step-body::before {
+        background: #8b5cf6;
+      }
+      .s3 .step-num {
+        background: rgba(245, 158, 11, 0.15);
+        color: #ac8c22;
+      }
+      .s3 .step-body::before {
+        background: #f59e0b;
+      }
+      .s4 .step-num {
+        background: rgba(6, 182, 212, 0.15);
+        color: #1f8997;
+      }
+      .s4 .step-body::before {
+        background: #06b6d4;
+      }
+      .s5 .step-num {
+        background: rgba(249, 115, 22, 0.15);
+        color: #ac8c22;
+      }
+      .s5 .step-body::before {
+        background: #f97316;
+      }
+      .s6 .step-num {
+        background: rgba(16, 185, 129, 0.15);
+        color: #31956d;
+      }
+      .s6 .step-body::before {
+        background: #10b981;
+      }
+
+      .tag-tanaguru {
+        background: rgba(59, 130, 246, 0.15);
+        color: #0c6ddd;
+      }
+      .tag-dsi {
+        background: rgba(139, 92, 246, 0.15);
+        color: #3812d0;
+      }
+      .tag-metier {
+        background: rgba(16, 185, 129, 0.15);
+        color: #0e4e35;
+      }
+      .tag-optional {
+        background: rgba(245, 158, 11, 0.15);
+        color: #695822;
+      }
+
+      /* ===== MATRIX ===== */
+      .matrix-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .profile-card {
+        background: var(–surface);
+        border: 1px solid var(–border);
+        border-radius: 20px;
+        padding: 28px;
+        transition: all 0.25s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .profile-card:hover {
+        border-color: rgba(99, 179, 237, 0.35);
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .profile-card::after {
+        content: ‘’;
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        opacity: 0.05;
+      }
+
+      .pc1::after {
+        background: #3b82f6;
+      }
+      .pc2::after {
+        background: #10b981;
+      }
+      .pc3::after {
+        background: #8b5cf6;
+      }
+
+      .profile-emoji {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        margin-bottom: 18px;
+      }
+
+      .pc1 .profile-emoji {
+        background: rgba(59, 130, 246, 0.12);
+      }
+      .pc2 .profile-emoji {
+        background: rgba(16, 185, 129, 0.12);
+      }
+      .pc3 .profile-emoji {
+        background: rgba(139, 92, 246, 0.12);
+      }
+
+      .profile-role {
+        font-family: ‘Syne’, sans-serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      .profile-situation {
+        font-size: 13px;
+        color: var(–muted);
+        line-height: 1.6;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(–border);
+      }
+
+      .profile-path-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(–muted);
+        margin-bottom: 10px;
+      }
+
+      .path-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.25);
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        color: #050505;
+        margin-bottom: 8px;
+        width: 100%;
+      }
+
+      /* ===== ACTORS ===== */
+      .actors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      .actor-card {
+        background: var(–surface);
+        border: 1px solid var(–border);
+        border-radius: 20px;
+        padding: 28px;
+      }
+
+      .actor-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .actor-logo {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        font-family: ‘Syne’, sans-serif;
+        font-weight: 800;
+        letter-spacing: -1px;
+      }
+
+      .actor-name {
+        font-family: ‘Syne’, sans-serif;
+        font-weight: 700;
+        font-size: 1.05rem;
+        margin-bottom: 4px;
+      }
+
+      .actor-role-desc {
+        font-size: 12px;
+        color: var(–muted);
+      }
+
+      .actor-missions {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .actor-missions li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 13px;
+        color: var(–text);
+        line-height: 1.5;
+      }
+
+      .mission-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        margin-top: 6px;
+        flex-shrink: 0;
+      }
+
+      /* SECTION DIVIDER */
+      .section-label {
+        font-size: 1.3rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(–muted);
+        margin: 3rem 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .section-label::after {
+        content: ‘’;
+        flex: 1;
+        height: 1px;
+        background: var(–border);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 640px) {
+        .timeline::before {
+          left: 20px;
+        }
+        .step-num {
+          width: 40px;
+          height: 40px;
+          font-size: 14px;
+          border-radius: 12px;
+        }
+        .tabs {
+          gap: 6px;
+        }
+        .tab-btn {
+          padding: 8px 14px;
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-badge">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+          RGAA · Remédiation Accessibilité
+        </div>
+        <h1>Parcours de Remédiation<br />Accessibilité Numérique</h1>
+        <p class="subtitle">
+          De la sensibilisation initiale à l'obtention du score de conformité —
+          un accompagnement structuré en 6 étapes.
+        </p>
+      </header>
+
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background: #3b82f6"></div>
+          Tanaguru
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: #8b5cf6"></div>
+          DSI
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: #10b981"></div>
+          Métier / Branche
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: #f59e0b"></div>
+          Optionnel
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showView('timeline', this)">
+          🗺 Parcours
+        </button>
+        <button class="tab-btn" onclick="showView('matrix', this)">
+          👤 Profils
+        </button>
+        <button class="tab-btn" onclick="showView('actors', this)">
+          🤝 Acteurs
+        </button>
+      </div>
+
+      <!-- TIMELINE VIEW -->
+
+      <div id="view-timeline" class="view active">
+        <div class="section-label">6 étapes structurées</div>
+
+        <div class="timeline">
+          <!-- STEP 1 -->
+          <div class="step s1" onclick="toggleStep(this)">
+            <div class="step-icon-col">
+              <div class="step-num">01</div>
+            </div>
+            <div class="step-body">
+              <div class="step-header">
+                <div>
+                  <div class="step-title">Acculturation & Cadrage</div>
+                  <div class="step-subtitle">
+                    Avant l'audit — comprendre les enjeux, définir le périmètre
+                  </div>
+                </div>
+                <svg
+                  class="chevron"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </div>
+              <div class="step-detail">
+                <div class="detail-grid">
+                  <div class="detail-card">
+                    <div
+                      class="detail-icon"
+                      style="background: rgba(59, 130, 246, 0.15)"
+                    >
+                      🎓
+                    </div>
+                    <div class="detail-text">
+                      <strong>Formation Générale</strong>
+                      <span
+                        >Sensibilisation au handicap et à l'accessibilité
+                        numérique</span
+                      >
+                      <div class="actor-tag tag-tanaguru">⚡ Tanaguru</div>
+                    </div>
+                  </div>
+                  <div class="detail-card">
+                    <div
+                      class="detail-icon"
+                      style="background: rgba(16, 185, 129, 0.15)"
+                    >
+                      🗂
+                    </div>
+                    <div class="detail-text">
+                      <strong>Définition de l'échantillon</strong>
+                      <span
+                        >Pages et parcours critiques avec les équipes métier et
+                        techniques</span
+                      >
+                      <div class="actor-tag tag-metier">🌿 Métier + DSI</div>
+                    </div>
+                  </div>
+                  <div class="detail-card">
+                    <div
+                      class="detail-icon"
+                      style="background: rgba(245, 158, 11, 0.15)"
+                    >
+                      📁
+                    </div>
+                    <div class="detail-text">
+                      <strong>Ressources SharePoint</strong>
+                      <span
+                        >Fiches pratiques et guides de contribution
+                        internes</span
+                      >
+                      <div class="actor-tag tag-dsi">🔷 DSI</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="step s2" onclick="toggleStep(this)">
+            <div class="step-icon-col">
+              <div class="step-num">02</div>
+            </div>
+            <div class="step-body">
+              <div class="step-header">
+                <div>
+                  <div class="step-title">Maîtrise de la Contribution</div>
+                  <div class="step-subtitle">
+                    Monter en compétence — adopter les bonnes pratiques
+                  </div>
+                </div>
+                <svg
+                  class="chevron"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </div>
+              <div class="step-detail">
+                <div class="detail-grid">
+                  <div class="detail-card">
+                    <div
+                      class="detail-icon"
+                      style="background: rgba(139, 92, 246, 0.15)"
+                    >
+                      🏛
+                    </div>
+                    <div class="detail-text">
+                      <strong>Sites Jahia</strong>
+                      <span
+                        >Formation CMS assurée par la DSI (expertise
+                        interne)</span
+                      >
+                      <div class="actor-tag tag-dsi">🔷 DSI</div>
+                    </div>
+                  </div>
+                  <div class="detail-card">
+                    <div
+                      class="detail-icon"
+                      style="background: rgba(59, 130, 246, 0.15)"
+                    >
+                      🌐
+                    </div>
+                    <div class="detail-text">
+                      <strong>Drupal / WordPress</strong>
+                      <span
+                        >Formation CMS assurée par Tanaguru pour les
+                        hors-Jahia</span
+                      >
+                      <div class="actor-tag tag-tanaguru">⚡ Tanaguru</div>
+                    </div>
+                  </div>
+                  <div class="detail-card">
+                    <div
+                      class="detail-icon"
+                      style="background: rgba(6, 182, 212, 0.15)"
+                    >
+                      ✍️
+                    </div>
+                    <div class="detail-text">
+                      <strong>Contenus éditoriaux web</strong>
+                      <span
+                        >Textes, images, liens — pour les contributeurs
+                        web</span
+                      >
+                      <div class="actor-tag tag-tanaguru">⚡ Tanaguru</div>
+                    </div>
+                  </div>
+                  <div class="detail-card">
+                    <div
+                      class="detail-icon"
+                      style="background: rgba(16, 185, 129, 0.15)"
+                    >
+                      📄
+                    </div>
+                    <div class="detail-text">
+                      <strong>Documents Word & PowerPoint</strong>
+                      <span
+                        >Pour communicants produisant des documents
+                        téléchargeables (PDF)</span
+                      >
+                      <div class="actor-tag tag-tanaguru">⚡ Tanaguru</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="step s3" onclick="toggleStep(this)">
+            <div class="step-icon-col">
+              <div class="step-num">03</div>
+            </div>
+            <div class="step-body">
+              <div class="step-header">
+                <div>
+                  <div class="step-title">
+                    Mise en Conformité Administrative
+                  </div>
+                  <div class="step-subtitle">
+                    Obligatoire — préparer le cadre légal du site
+                  </div>
+                </div>
+                <svg
+                  class="chevron"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </div>
+              <div class="step-detail">
+                <div class="detail-grid">
+                  <div class="detail-card">
+                    <div
+                      class="detail-icon"
+                      style="background: rgba(245, 158, 11, 0.15)"
+                    >
+                      📋
+                    </div>
+                    <div class="detail-text">
+                      <strong>Pages obligatoires</strong>
+                      <span
+                        >Page Accessibilité + Déclaration d'accessibilité</span
+                      >
+                      <div class="actor-tag tag-dsi">🔷 DSI</div>
+                    </div>
+                  </div>
+                  <div class="detail-card">
+                    <div
+                      class="detail-icon"
+                      style="background: rgba(245, 158, 11, 0.15)"
+                    >
+                      🗺
+                    </div>
+                    <div class="detail-text">
+                      <strong>Plan du site & Plan d'action</strong>
+                      <span>Documentation structurelle du site</span>
+                      <div class="actor-tag tag-dsi">🔷 DSI</div>
+                    </div>
+                  </div>
+                  <div class="detail-card">
+                    <div
+                      class="detail-icon"
+                      style="background: rgba(245, 158, 11, 0.15)"
+                    >
+                      📅
+                    </div>
+                    <div class="detail-text">
+                      <strong>Schéma pluriannuel 2026</strong>
+                      <span>Feuille de route accessibilité multi-années</span>
+                      <div class="actor-tag tag-dsi">🔷 DSI</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 4 -->
+          <div class="step s4" onclick="toggleStep(this)">
+            <div class="step-icon-col">
+              <div class="step-num">04</div>
+            </div>
+            <div class="step-body">
+              <div class="step-header">
+                <div>
+                  <div class="step-title">Diagnostic — Audit Initial</div>
+                  <div class="step-subtitle">
+                    Le moment de vérité — analyse exhaustive par l'expert
+                  </div>
+                </div>
+                <svg
+                  class="chevron"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </div>
+              <div class="step-detail">
+                <div class="detail-grid">
+                  <div class="detail-card">
+                    <div
+                      class="detail-icon"
+                      style="background: rgba(6, 182, 212, 0.15)"
+                    >
+                      🔍
+                    </div>
+                    <div class="detail-text">
+                      <strong>Audit RGAA complet</strong>
+                      <span
+                        >Analyse de l'échantillon défini en étape 1 —
+                        non-conformités techniques et éditoriales</span
+                      >
+                      <div class="actor-tag tag-tanaguru">⚡ Tanaguru</div>
+                    </div>
+                  </div>
+                  <div class="detail-card">
+                    <div
+                      class="detail-icon"
+                      style="background: rgba(6, 182, 212, 0.15)"
+                    >
+                      📊
+                    </div>
+                    <div class="detail-text">
+                      <strong>Rapport détaillé</strong>
+                      <span
+                        >Liste exhaustive des anomalies avec niveau de sévérité
+                        et recommandations</span
+                      >
+                      <div class="actor-tag tag-tanaguru">⚡ Tanaguru</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 5 -->
+          <div class="step s5" onclick="toggleStep(this)">
+            <div class="step-icon-col">
+              <div class="step-num">05</div>
+            </div>
+            <div class="step-body">
+              <div class="step-header">
+                <div>
+                  <div class="step-title">Remédiation</div>
+                  <div class="step-subtitle">
+                    Correction des anomalies — accompagnement optionnel
+                  </div>
+                </div>
+                <svg
+                  class="chevron"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </div>
+              <div class="step-detail">
+                <div class="detail-grid">
+                  <div class="detail-card">
+                    <div
+                      class="detail-icon"
+                      style="background: rgba(249, 115, 22, 0.15)"
+                    >
+                      🛠
+                    </div>
+                    <div class="detail-text">
+                      <strong>Corrections des anomalies</strong>
+                      <span
+                        >Équipes métier et DSI appliquent les corrections
+                        identifiées</span
+                      >
+                      <div class="actor-tag tag-metier">🌿 Métier + DSI</div>
+                    </div>
+                  </div>
+                  <div class="detail-card">
+                    <div
+                      class="detail-icon"
+                      style="background: rgba(245, 158, 11, 0.15)"
+                    >
+                      🧭
+                    </div>
+                    <div class="detail-text">
+                      <strong>Suivi personnalisé (optionnel)</strong>
+                      <span
+                        >Aide à l'interprétation de l'audit et priorisation des
+                        corrections</span
+                      >
+                      <div class="actor-tag tag-optional">
+                        ★ Optionnel — Tanaguru
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 6 -->
+          <div class="step s6" onclick="toggleStep(this)">
+            <div class="step-icon-col">
+              <div class="step-num">06</div>
+            </div>
+            <div class="step-body">
+              <div class="step-header">
+                <div>
+                  <div class="step-title">Validation & Certification</div>
+                  <div class="step-subtitle">
+                    Contre-audit — officialiser les efforts et obtenir le score
+                    final
+                  </div>
+                </div>
+                <svg
+                  class="chevron"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </div>
+              <div class="step-detail">
+                <div class="detail-grid">
+                  <div class="detail-card">
+                    <div
+                      class="detail-icon"
+                      style="background: rgba(16, 185, 129, 0.15)"
+                    >
+                      🔄
+                    </div>
+                    <div class="detail-text">
+                      <strong>Contre-Audit RGAA</strong>
+                      <span
+                        >Nouvel examen après corrections pour vérifier la
+                        conformité</span
+                      >
+                      <div class="actor-tag tag-tanaguru">⚡ Tanaguru</div>
+                    </div>
+                  </div>
+                  <div class="detail-card">
+                    <div
+                      class="detail-icon"
+                      style="background: rgba(16, 185, 129, 0.15)"
+                    >
+                      🏆
+                    </div>
+                    <div class="detail-text">
+                      <strong>Score de conformité final</strong>
+                      <span
+                        >Attribution du score + mise à jour de la déclaration
+                        d'accessibilité</span
+                      >
+                      <div class="actor-tag tag-tanaguru">⚡ Tanaguru</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MATRIX VIEW -->
+
+      <div id="view-matrix" class="view">
+        <div class="section-label">Recommandations par profil</div>
+        <div class="matrix-grid">
+          <div class="profile-card pc1">
+            <div class="profile-emoji">💻</div>
+            <div class="profile-role">Contributeur Web</div>
+            <div class="profile-situation">
+              Je publie des articles et des pages sur le site, sur Jahia ou un
+              autre CMS.
+            </div>
+            <div class="profile-path-label">Priorité de formation</div>
+            <div class="path-pill">
+              🏛 Formation CMS — DSI (Jahia) ou Tanaguru (autres)
+            </div>
+            <div class="path-pill">✍️ Focus Contenus éditoriaux web</div>
+            <div class="path-pill">🔍 Audit RGAA + Remédiation</div>
+          </div>
+
+          <div class="profile-card pc2">
+            <div class="profile-emoji">📢</div>
+            <div class="profile-role">Chargé·e de Communication</div>
+            <div class="profile-situation">
+              Je produis surtout des rapports annuels, des guides et des
+              documents PDF téléchargeables.
+            </div>
+            <div class="profile-path-label">Priorité de formation</div>
+            <div class="path-pill">📄 Focus Documents Word & PowerPoint</div>
+            <div class="path-pill">
+              🎓 Sensibilisation accessibilité générale
+            </div>
+            <div class="path-pill">📁 Ressources SharePoint internes</div>
+          </div>
+
+          <div class="profile-card pc3">
+            <div class="profile-emoji">🗂</div>
+            <div class="profile-role">Chef·fe de Projet</div>
+            <div class="profile-situation">
+              Je démarre un projet de site hors périmètre Jahia (Drupal,
+              WordPress ou autre).
+            </div>
+            <div class="profile-path-label">Parcours complet recommandé</div>
+            <div class="path-pill">🎓 1 — Formation générale Tanaguru</div>
+            <div class="path-pill">
+              🌐 2 — Formation CMS Tanaguru (hors-Jahia)
+            </div>
+            <div class="path-pill">
+              📋 3 — Mise en conformité administrative
+            </div>
+            <div class="path-pill">🔍 4 — Audit RGAA</div>
+            <div class="path-pill">🛠 5 — Remédiation + suivi</div>
+            <div class="path-pill">🏆 6 — Contre-audit & certification</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTORS VIEW -->
+
+      <div id="view-actors" class="view">
+        <div class="section-label">Acteurs du parcours</div>
+        <div class="actors-grid">
+          <div class="actor-card">
+            <div class="actor-header">
+              <div
+                class="actor-logo"
+                style="background: rgba(59, 130, 246, 0.12); color: #93c5fd"
+              >
+                T
+              </div>
+              <div>
+                <div class="actor-name">Tanaguru</div>
+                <div class="actor-role-desc">
+                  Prestataire expert en accessibilité
+                </div>
+              </div>
+            </div>
+            <ul class="actor-missions">
+              <li>
+                <div class="mission-dot" style="background: #3b82f6"></div>
+                Formation générale accessibilité & RGAA
+              </li>
+              <li>
+                <div class="mission-dot" style="background: #3b82f6"></div>
+                Formation CMS pour Drupal / WordPress
+              </li>
+              <li>
+                <div class="mission-dot" style="background: #3b82f6"></div>
+                Focus contenus éditoriaux web
+              </li>
+              <li>
+                <div class="mission-dot" style="background: #3b82f6"></div>
+                Focus documents Word & PowerPoint
+              </li>
+              <li>
+                <div class="mission-dot" style="background: #3b82f6"></div>
+                Audit RGAA (diagnostic initial)
+              </li>
+              <li>
+                <div class="mission-dot" style="background: #f59e0b"></div>
+                Accompagnement remédiation (optionnel)
+              </li>
+              <li>
+                <div class="mission-dot" style="background: #3b82f6"></div>
+                Contre-audit & score final
+              </li>
+            </ul>
+          </div>
+
+          <div class="actor-card">
+            <div class="actor-header">
+              <div
+                class="actor-logo"
+                style="background: rgba(139, 92, 246, 0.12); color: #c4b5fd"
+              >
+                DSI
+              </div>
+              <div>
+                <div class="actor-name">DSI</div>
+                <div class="actor-role-desc">
+                  Direction des Systèmes d'Information
+                </div>
+              </div>
+            </div>
+            <ul class="actor-missions">
+              <li>
+                <div class="mission-dot" style="background: #8b5cf6"></div>
+                Formation CMS Jahia (expertise interne)
+              </li>
+              <li>
+                <div class="mission-dot" style="background: #8b5cf6"></div>
+                Mise à disposition des ressources SharePoint
+              </li>
+              <li>
+                <div class="mission-dot" style="background: #8b5cf6"></div>
+                Création des pages légales obligatoires
+              </li>
+              <li>
+                <div class="mission-dot" style="background: #8b5cf6"></div>
+                Déclaration & plan d'accessibilité
+              </li>
+              <li>
+                <div class="mission-dot" style="background: #8b5cf6"></div>
+                Schéma pluriannuel 2026
+              </li>
+              <li>
+                <div class="mission-dot" style="background: #8b5cf6"></div>
+                Corrections techniques (développement)
+              </li>
+            </ul>
+          </div>
+
+          <div class="actor-card">
+            <div class="actor-header">
+              <div
+                class="actor-logo"
+                style="background: rgba(16, 185, 129, 0.12); color: #6ee7b7"
+              >
+                M
+              </div>
+              <div>
+                <div class="actor-name">Métiers / Branches</div>
+                <div class="actor-role-desc">
+                  Contributeurs, communicants, chefs de projet
+                </div>
+              </div>
+            </div>
+            <ul class="actor-missions">
+              <li>
+                <div class="mission-dot" style="background: #10b981"></div>
+                Définition de l'échantillon de pages
+              </li>
+              <li>
+                <div class="mission-dot" style="background: #10b981"></div>
+                Participation aux formations
+              </li>
+              <li>
+                <div class="mission-dot" style="background: #10b981"></div>
+                Application des bonnes pratiques au quotidien
+              </li>
+              <li>
+                <div class="mission-dot" style="background: #10b981"></div>
+                Corrections éditoriales des anomalies
+              </li>
+              <li>
+                <div class="mission-dot" style="background: #10b981"></div>
+                Mise à jour des documents et contenus
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showView(id, btn) {
+        document
+          .querySelectorAll(".view")
+          .forEach((v) => v.classList.remove("active"));
+        document
+          .querySelectorAll(".tab-btn")
+          .forEach((b) => b.classList.remove("active"));
+        document.getElementById("view-" + id).classList.add("active");
+        btn.classList.add("active");
+      }
+
+      function toggleStep(el) {
+        const wasOpen = el.classList.contains("open");
+        document
+          .querySelectorAll(".step.open")
+          .forEach((s) => s.classList.remove("open"));
+        if (!wasOpen) el.classList.add("open");
+      }
+
+      // Auto-open first step
+      document.querySelector(".step").classList.add("open");
+    </script>
+  </body>
+</html>
