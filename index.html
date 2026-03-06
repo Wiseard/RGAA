@@ -70,13 +70,15 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: rgba(59, 130, 246, 0.1);
+        /* background: rgba(59, 130, 246, 0.1); */
+        background: #02336ad6;
         border: 1px solid rgba(59, 130, 246, 0.3);
         border-radius: 100px;
         padding: 6px 16px;
         font-size: 12px;
         font-weight: 500;
-        color: var(-–accent2);
+        /* color: var(-–accent2); */
+        color: #fff;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         margin-bottom: 24px;
@@ -426,6 +428,14 @@
         background: rgba(139, 92, 246, 0.15);
         color: #3812d0;
       }
+      .tag-comm {
+        background: rgba(169, 48, 7, 0.15);
+        color: #931f0e;
+      }
+      .tag-tma {
+        background: rgba(169, 107, 7, 0.15);
+        color: #e37d17;
+      }
       .tag-metier {
         background: rgba(16, 185, 129, 0.15);
         color: #0e4e35;
@@ -537,8 +547,16 @@
         font-weight: 500;
         letter-spacing: 0.5px;
         color: #050505;
-        margin-bottom: 8px;
+        margin-bottom: 4px;
         width: 100%;
+      }
+
+      .pill-metier {
+        background: rgba(16, 185, 129, 0.1);
+      }
+
+      .pill-dsi {
+        background: rgba(139, 92, 246, 0.1);
       }
 
       /* ===== ACTORS ===== */
@@ -591,7 +609,7 @@
         list-style: none;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 4px;
       }
 
       .actor-missions li {
@@ -689,17 +707,29 @@
           Métier / Branche
         </div>
         <div class="legend-item">
+          <div class="legend-dot" style="background: #931f0e"></div>
+          Communication
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: #e37d17"></div>
+          TMA
+        </div>
+        <div class="legend-item">
           <div class="legend-dot" style="background: #f59e0b"></div>
           Optionnel
         </div>
       </div>
 
       <div class="tabs">
-        <button class="tab-btn active" onclick="showView('timeline', this)">
-          🗺 Parcours
+        <button
+          class="tab-btn btn-1 active"
+          onclick="showView('timeline', this)"
+        >
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Parcours</span>
         </button>
         <button class="tab-btn" onclick="showView('matrix', this)">
-          👤 Profils
+          👩‍💻 Profils
         </button>
         <button class="tab-btn" onclick="showView('actors', this)">
           🤝 Acteurs
@@ -750,7 +780,7 @@
                         >Sensibilisation au handicap et à l'accessibilité
                         numérique</span
                       >
-                      <div class="actor-tag tag-tanaguru">⚡ Tanaguru</div>
+                      <div class="actor-tag tag-tanaguru">🟦 Tanaguru</div>
                     </div>
                   </div>
                   <div class="detail-card">
@@ -766,7 +796,8 @@
                         >Pages et parcours critiques avec les équipes métier et
                         techniques</span
                       >
-                      <div class="actor-tag tag-metier">🌿 Métier + DSI</div>
+                      <div class="actor-tag tag-metier">🟩 Métier</div>
+                      <div class="actor-tag tag-dsi">🟪 DSI</div>
                     </div>
                   </div>
                   <div class="detail-card">
@@ -782,7 +813,7 @@
                         >Fiches pratiques et guides de contribution
                         internes</span
                       >
-                      <div class="actor-tag tag-dsi">🔷 DSI</div>
+                      <div class="actor-tag tag-comm">🟥 Communication</div>
                     </div>
                   </div>
                 </div>
@@ -823,12 +854,12 @@
                       🏛
                     </div>
                     <div class="detail-text">
-                      <strong>Sites Jahia</strong>
+                      <strong>Jahia</strong>
                       <span
-                        >Accompagnement assurée par la DSI (expertise
-                        interne)</span
-                      >
-                      <div class="actor-tag tag-dsi">🔷 DSI</div>
+                        >Sessions d'accompagnement à la contribution accessible
+                        RGAA
+                      </span>
+                      <div class="actor-tag tag-dsi">🟪 DSI</div>
                     </div>
                   </div>
                   <div class="detail-card">
@@ -840,14 +871,11 @@
                     </div>
                     <div class="detail-text">
                       <strong>Drupal / WordPress</strong>
-                      <span
-                        >Formation CMS assurée par Tanaguru pour les
-                        hors-Jahia</span
-                      >
-                      <div class="actor-tag tag-tanaguru">⚡ Tanaguru</div>
+                      <span>Formation à la contribution accessible RGAA</span>
+                      <div class="actor-tag tag-tanaguru">🟦 Tanaguru</div>
                     </div>
                   </div>
-                  <div class="detail-card">
+                  <!-- <div class="detail-card">
                     <div
                       class="detail-icon"
                       style="background: rgba(6, 182, 212, 0.15)"
@@ -860,9 +888,9 @@
                         >Textes, images, liens — pour les contributeurs
                         web</span
                       >
-                      <div class="actor-tag tag-tanaguru">⚡ Tanaguru</div>
+                      <div class="actor-tag tag-tanaguru">🟦 Tanaguru</div>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="detail-card">
                     <div
                       class="detail-icon"
@@ -876,7 +904,7 @@
                         >Pour communicants produisant des documents
                         téléchargeables (PDF)</span
                       >
-                      <div class="actor-tag tag-tanaguru">⚡ Tanaguru</div>
+                      <div class="actor-tag tag-tanaguru">🟦 Tanaguru</div>
                     </div>
                   </div>
                 </div>
@@ -923,7 +951,7 @@
                       <span
                         >Page Accessibilité + Déclaration d'accessibilité</span
                       >
-                      <div class="actor-tag tag-dsi">🔷 DSI</div>
+                      <div class="actor-tag tag-dsi">🟪 DSI</div>
                     </div>
                   </div>
                   <div class="detail-card">
@@ -936,7 +964,8 @@
                     <div class="detail-text">
                       <strong>Plan du site & Plan d'action</strong>
                       <span>Documentation structurelle du site</span>
-                      <div class="actor-tag tag-dsi">🔷 DSI</div>
+                      <div class="actor-tag tag-dsi">🟪</div>
+                      <div class="actor-tag tag-comm">🟥 Communication</div>
                     </div>
                   </div>
                   <div class="detail-card">
@@ -949,7 +978,8 @@
                     <div class="detail-text">
                       <strong>Schéma pluriannuel 2026</strong>
                       <span>Feuille de route accessibilité multi-années</span>
-                      <div class="actor-tag tag-dsi">🔷 DSI</div>
+                      <div class="actor-tag tag-dsi">🟦 DSI</div>
+                      <div class="actor-tag tag-comm">🟥 Communication</div>
                     </div>
                   </div>
                 </div>
@@ -965,7 +995,9 @@
             <div class="step-body">
               <div class="step-header">
                 <div>
-                  <div class="step-title">Diagnostic — Audit Initial</div>
+                  <div class="step-title">
+                    Diagnostic — Audit de Détection / Audit Complet
+                  </div>
                   <div class="step-subtitle">
                     Le moment de vérité — analyse exhaustive par l'expert
                   </div>
@@ -995,7 +1027,7 @@
                         >Analyse de l'échantillon défini en étape 1 —
                         non-conformités techniques et éditoriales</span
                       >
-                      <div class="actor-tag tag-tanaguru">⚡ Tanaguru</div>
+                      <div class="actor-tag tag-tanaguru">🟦 Tanaguru</div>
                     </div>
                   </div>
                   <div class="detail-card">
@@ -1011,7 +1043,7 @@
                         >Liste exhaustive des anomalies avec niveau de sévérité
                         et recommandations</span
                       >
-                      <div class="actor-tag tag-tanaguru">⚡ Tanaguru</div>
+                      <div class="actor-tag tag-tanaguru">🟦 Tanaguru</div>
                     </div>
                   </div>
                 </div>
@@ -1057,7 +1089,8 @@
                         >Équipes métier et DSI appliquent les corrections
                         identifiées</span
                       >
-                      <div class="actor-tag tag-metier">🌿 Métier + DSI</div>
+                      <div class="actor-tag tag-metier">🟩 Métier</div>
+                      <div class="actor-tag tag-dsi">🟪 DSI</div>
                     </div>
                   </div>
                   <div class="detail-card">
@@ -1076,6 +1109,22 @@
                       <div class="actor-tag tag-optional">
                         ★ Optionnel — Tanaguru
                       </div>
+                    </div>
+                  </div>
+                  <div class="detail-card">
+                    <div
+                      class="detail-icon"
+                      style="background: rgba(245, 158, 11, 0.15)"
+                    >
+                      🚧
+                    </div>
+                    <div class="detail-text">
+                      <strong>Livraison en prodution/pré-production</strong>
+                      <span
+                        >Intégration des corrections dans l'environnement de
+                        pré-production/production du site.</span
+                      >
+                      <div class="actor-tag tag-tma">🟧 TMA</div>
                     </div>
                   </div>
                 </div>
@@ -1122,7 +1171,7 @@
                         >Nouvel examen après corrections pour vérifier la
                         conformité</span
                       >
-                      <div class="actor-tag tag-tanaguru">⚡ Tanaguru</div>
+                      <div class="actor-tag tag-tanaguru">🟦 Tanaguru</div>
                     </div>
                   </div>
                   <div class="detail-card">
@@ -1138,7 +1187,8 @@
                         >Attribution du score + mise à jour de la déclaration
                         d'accessibilité</span
                       >
-                      <div class="actor-tag tag-tanaguru">⚡ Tanaguru</div>
+                      <div class="actor-tag tag-tanaguru">🟦 Tanaguru</div>
+                      <div class="actor-tag tag-dsi">🟪 DSI</div>
                     </div>
                   </div>
                 </div>
@@ -1162,17 +1212,21 @@
             </div>
             <div class="profile-path-label">Priorité de formation</div>
             <div class="path-pill">
-              🏛 &nbsp;Formation contribution accessible — DSI (Jahia) ou
-              Tanaguru (autres)
+              🎓 Wébinaires de sensibilisation à l'accessibilité<br />🟦
+              Tanaguru
             </div>
             <div class="path-pill">
-              🎓 Sensibilisation accessibilité Tanaguru
+              📖 Formation à la contribution accessible RGAA<br />🟪 DSI
+              (Jahia)<br />🟦 Tanaguru (autres)
             </div>
+            <!-- <div class="path-pill">
+              🔍 Evaluer la conformité d’un site web avec le RGAA<br />🟦
+              Tanaguru
+            </div> -->
             <div class="path-pill">
-              ✍️ Focus Contenus éditoriaux web et composants Jahia
+              🤝 Accompagnement à la remédiation<br />🟦 Tanaguru
             </div>
-            <div class="path-pill">🔍 Audit RGAA + Remédiation</div>
-            <div class="path-pill">📁 Ressources SharePoint internes</div>
+            <!-- <div class="path-pill">📁 Ressources SharePoint internes</div> -->
           </div>
 
           <div class="profile-card pc2">
@@ -1184,10 +1238,12 @@
             </div>
             <div class="profile-path-label">Priorité de formation</div>
             <div class="path-pill">
-              🎓 Sensibilisaton accessibilité Tanaguru
+              🎓 Wébinaires de sensibilisation à l'accessibilité<br />🟦
+              Tanaguru
             </div>
-            <div class="path-pill">📄 Focus Documents Word & PowerPoint</div>
-            <div class="path-pill">📁 Ressources SharePoint internes</div>
+            <div class="path-pill">
+              📄 Focus Documents Word & PowerPoint<br />🟦 Tanaguru
+            </div>
           </div>
 
           <div class="profile-card pc3">
@@ -1199,21 +1255,24 @@
             </div>
             <div class="profile-path-label">Parcours complet recommandé</div>
             <div class="path-pill">
-              🎓 1 — Sensibilisaton accessibilité Tanaguru
+              🎓 Wébinaires de sensibilisation à l'accessibilité<br />🟦
+              Tanaguru
             </div>
             <div class="path-pill">
-              🎓 2 — Gestion de projet : piloter l’accessibilité d’un projet Web
+              🎯 Gestion de projet : piloter l’accessibilité d’un projet Web<br />🟦
+              Tanaguru
             </div>
             <div class="path-pill">
-              🌐 3 — Formation CMS Tanaguru (hors-Jahia)
+              📖 Formation à la contribution accessible RGAA<br />🟪 DSI
+              (Jahia)<br />🟦 Tanaguru (autres)
             </div>
             <div class="path-pill">
-              📋 4 — Mise en conformité administrative
+              🔍 Evaluer la conformité d’un site web avec le RGAA<br />🟦
+              Tanaguru
             </div>
-            <div class="path-pill">🔍 5 — Audit RGAA</div>
-            <div class="path-pill">🛠 6 — Remédiation + suivi</div>
-            <div class="path-pill">🏆 7 — Contre-audit</div>
-            <div class="path-pill">📁 8 — Ressources SharePoint internes</div>
+            <div class="path-pill">
+              🤝 Accompagnement à la remédiation<br />🟦 Tanaguru
+            </div>
           </div>
         </div>
       </div>
@@ -1240,32 +1299,51 @@
             </div>
             <ul class="actor-missions">
               <li>
-                <div class="mission-dot" style="background: #3b82f6"></div>
-                Sensibilisaton accessibilité & RGAA
+                <div class="path-pill">
+                  Wébinaires de sensibilisation à l'accessibilité
+                </div>
+
+                <!-- <div class="mission-dot" style="background: #3b82f6"></div>
+                Sensibilisaton accessibilité & RGAA -->
               </li>
               <li>
-                <div class="mission-dot" style="background: #3b82f6"></div>
-                Formation CMS pour Drupal / WordPress
+                <div class="path-pill">
+                  Formation à la contribution accessible RGAA Drupal / WordPress
+                </div>
+
+                <!-- <div class="mission-dot" style="background: #3b82f6"></div>
+                Formation CMS pour Drupal / WordPress -->
               </li>
               <li>
-                <div class="mission-dot" style="background: #3b82f6"></div>
-                Focus contenus éditoriaux web
+                <!-- <div class="path-pill">Focus contenus éditoriaux web</div> -->
+                <!-- <div class="mission-dot" style="background: #3b82f6"></div>
+                Focus contenus éditoriaux web -->
               </li>
               <li>
-                <div class="mission-dot" style="background: #3b82f6"></div>
-                Focus documents Word & PowerPoint
+                <div class="path-pill">
+                  Documents Word & PowerPoint accessibles
+                </div>
+                <!-- <div class="mission-dot" style="background: #3b82f6"></div>
+                Focus documents Word & PowerPoint -->
               </li>
               <li>
-                <div class="mission-dot" style="background: #3b82f6"></div>
-                Audit RGAA (diagnostic initial)
+                <div class="path-pill">
+                  Audit RGAA (Complet ou de Détection)
+                </div>
+                <!-- <div class="mission-dot" style="background: #3b82f6"></div>
+                Audit RGAA (diagnostic initial) -->
               </li>
               <li>
-                <div class="mission-dot" style="background: #f59e0b"></div>
-                Accompagnement remédiation (optionnel)
+                <div class="path-pill">
+                  Accompagnement remédiation (optionnel)
+                </div>
+                <!-- <div class="mission-dot" style="background: #f59e0b"></div>
+                Accompagnement remédiation (optionnel) -->
               </li>
               <li>
-                <div class="mission-dot" style="background: #3b82f6"></div>
-                Contre-audit & score final
+                <div class="path-pill">Contre-audit & score final</div>
+                <!-- <div class="mission-dot" style="background: #3b82f6"></div>
+                Contre-audit & score final -->
               </li>
             </ul>
           </div>
@@ -1287,28 +1365,43 @@
             </div>
             <ul class="actor-missions">
               <li>
-                <div class="mission-dot" style="background: #8b5cf6"></div>
-                Accompagnement CMS Jahia (expertise interne)
+                <div class="path-pill pill-dsi">
+                  Formation à la contribution accessible RGAA sur Jahia
+                </div>
+
+                <!-- <div class="mission-dot" style="background: #8b5cf6"></div>
+                Accompagnement CMS Jahia (expertise interne) -->
               </li>
-              <li>
+              <!-- <li>
                 <div class="mission-dot" style="background: #8b5cf6"></div>
                 Mise à disposition des ressources SharePoint
-              </li>
+              </li> -->
               <li>
-                <div class="mission-dot" style="background: #8b5cf6"></div>
+                <div class="path-pill pill-dsi">
+                  Définition de l'échantillon de pages
+                </div>
+              </li>
+
+              <li>
+                <div class="path-pill pill-dsi">
+                  Création des pages légales obligatoires de mise en conformité
+                </div>
+                <!-- <div class="mission-dot" style="background: #8b5cf6"></div>
+                Création des pages légales obligatoires -->
+              </li>
+              <!-- <li>
                 Création des pages légales obligatoires
-              </li>
-              <li>
                 <div class="mission-dot" style="background: #8b5cf6"></div>
                 Déclaration & plan d'accessibilité
               </li>
               <li>
                 <div class="mission-dot" style="background: #8b5cf6"></div>
                 Schéma pluriannuel 2026
-              </li>
+              </li> -->
               <li>
-                <div class="mission-dot" style="background: #8b5cf6"></div>
-                Corrections techniques (développement)
+                <div class="path-pill pill-dsi">Corrections techniques</div>
+                <!-- <div class="mission-dot" style="background: #8b5cf6"></div>
+                Corrections techniques (développement) -->
               </li>
             </ul>
           </div>
@@ -1330,31 +1423,54 @@
             </div>
             <ul class="actor-missions">
               <li>
-                <div class="mission-dot" style="background: #10b981"></div>
-                Définition de l'échantillon de pages
+                <div class="path-pill pill-metier">
+                  Définition de l'échantillon de pages
+                </div>
+
+                <!-- <div class="mission-dot" style="background: #10b981"></div>
+                Définition de l'échantillon de pages -->
               </li>
               <li>
-                <div class="mission-dot" style="background: #10b981"></div>
-                Participation aux formations
+                <div class="path-pill pill-metier">
+                  Participation aux formations
+                </div>
+
+                <!-- <div class="mission-dot" style="background: #10b981"></div>
+                Participation aux formations -->
               </li>
               <li>
-                <div class="mission-dot" style="background: #10b981"></div>
-                Application des bonnes pratiques au quotidien
+                <div class="path-pill pill-metier">
+                  Application des bonnes pratiques au quotidien
+                </div>
+
+                <!-- <div class="mission-dot" style="background: #10b981"></div>
+                Application des bonnes pratiques au quotidien -->
               </li>
               <li>
-                <div class="mission-dot" style="background: #10b981"></div>
-                Corrections éditoriales des anomalies
+                <div class="path-pill pill-metier">
+                  Corrections éditoriales des anomalies
+                </div>
+
+                <!-- <div class="mission-dot" style="background: #10b981"></div>
+                Corrections éditoriales des anomalies -->
               </li>
               <li>
-                <div class="mission-dot" style="background: #10b981"></div>
-                Mise à jour des documents et contenus
+                <div class="path-pill pill-metier">
+                  Mise à jour des documents et contenus
+                </div>
+
+                <!-- <div class="mission-dot" style="background: #10b981"></div>
+                Mise à jour des documents et contenus -->
               </li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-
+    <script
+      src="https://kit.fontawesome.com/9870ec71cb.js"
+      crossorigin="anonymous"
+    ></script>
     <script>
       function showView(id, btn) {
         document
